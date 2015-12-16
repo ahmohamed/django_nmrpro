@@ -9,3 +9,5 @@
 
 test_files/*
 .ipynb*
+dist/*
+django_nmrpro.egg-info/*

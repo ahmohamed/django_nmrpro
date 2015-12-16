@@ -1,25 +1,45 @@
-NMRPRo python package
-=====================
+Django-nmrpro App
+=================
 
-NMRPro reads and processes different types of NMR spectra. This package is released as part of an integrated web component 
-`NMRPro <http://mamitsukalab.org/tools/nmrpro/>`_. The package can also be used directly from python. Refer to the 
-`tutorial </tutorial/NMRPro_tutorial.ipynb>`_ for examples.
+The App provides a web interface to the python package, effectively compressing and reformatting NMR spectra into JSON formats. The App also stores users' spectra in a database along with their processing history. Also, the App collects all plugins from the python package and transfers them to the client-side, where they are rendered as GUI. 
 
 
 
-NMRPro package structure
-************************
+Installtion
+***********
+1. Install `python 2.7 <https://www.python.org/downloads/release/python-2710/>`_ and pip package manager.
 
-NMRPro python package consists of two main parts: 
+2. From the terminal console, install NMRPro python package using the command::    
 
-Core
-----
+    pip install nmrpro
 
-The core provides 4 different classes for representing NMR spectra. All spectra regarless of their original format are stored as NMRSpectrum object, which frees the user from dealing with format-specific processing. Also, it encapsulates multi-dimesional processing for 2D spectra, by applying the processing functions to each dimension.
+ On Windows, from the command prompt::
 
-Plugins
--------
+    python -m pip install nmrpro
 
-Plugins provide functions necessary for automatic spectral processing, and allow for easy extensibility of the package. Currently implemented plugins are Zero-filling, Apodization, FT, Phase correction (automatic), Baseline correction and Peak picking.
+3. Install the django-nmrpro App using the command::
+
+    pip install django-nmrpro
+
+ On Windows::
+
+    python -m pip install django-nmrpro
+
+4. pip command automatically installs all necessary package dependencies.
+5. There is no need to install SpecdrawJS separately since it is included in the Django App.
+
+
+Runnig NMRPro server
+********************
+Once the Django App is installed, the user can integrate it into an existing Django project. To summarize the integration process, briefly:
+
+1. If you do not have an existing Django project, first create one by following `this tutorial <https://docs.djangoproject.com/en/1.8/intro/tutorial01/>`_.
+2. In ``settings.py``, add django_nmpro to your ``INSTALLED_APPS``.
+3. From the terminal console (*command prompt on Windows*), navigate to the project home directory and run the web server using the command::
+
+    python manage.py runserver
+
+4. To make sure that installation is successful, visit the URL http://127.0.0.1:8000/nmrpro_test/, which should display 5 spectra from the Coffees dataset.
+
 
 
