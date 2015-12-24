@@ -131,5 +131,15 @@ def spec_url(request, url):
 def view_spectrum(request, url):
     return render_to_response('getSpectrum.html', {'spec_url':url, 'request':request})
 
-
+@jsonError
+@jsonSpectrum
+def coffees_test(request):
+    import os.path
+    abs_url = os.path.join(os.path.dirname(__file__), 'static/nmrpro/demo.tar.gz')
+    specs = fromFile(abs_url)
+    registerSpecs(request, specs)
+    return specs
     
+
+def coffees_view(request):
+    return render_to_response('coffees_test.html')

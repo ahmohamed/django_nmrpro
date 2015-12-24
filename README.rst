@@ -35,7 +35,8 @@ Once the Django App is installed, the user can integrate it into an existing Dja
 
 1. If you do not have an existing Django project, first create one by following `this tutorial <https://docs.djangoproject.com/en/1.8/intro/tutorial01/>`_.
 2. In ``settings.py``, add django_nmpro to your ``INSTALLED_APPS``.
-3. From the terminal console (*command prompt on Windows*), navigate to the project home directory and run the web server using the command::
+3. In ``urls.py``, add the following pattern ``url(r'^', include('django_nmrpro.urls')),``.
+4. From the terminal console (*command prompt on Windows*), navigate to the project home directory and run the web server using the command::
 
     python manage.py runserver
 

@@ -1,0 +1,35 @@
+<html>
+<head>
+  {% load staticfiles %}
+  {% load static %}
+  <script src="{% static "nmrpro/d3.v3.min.js" %}"></script>
+  <script src="{% static "nmrpro/specdraw.js" %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static "nmrpro/specdraw.min.css" %}">
+</head>
+<body>
+
+{% block content %}
+
+
+<script>
+
+var url = "{% url 'django_nmrpro.views.coffees_test' %}";
+var container = d3.select("body")
+  .style("width", '100%')
+  .style("height", '100%')
+	.append('div')
+  .style("width", '100%')
+  .style("height", '100%');
+
+
+{% url 'django_nmrpro.views.menu' as menu_url%}  
+var spec_app = specdraw.App().connect('{{ menu_url|cut:"menu" }}');
+container.call(spec_app);
+spec_app.data(url, 5);
+
+</script>
+
+{% endblock %}
+</body>
+</html>
+
