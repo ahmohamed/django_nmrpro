@@ -37,10 +37,14 @@ Once the Django App is installed, the user can integrate it into an existing Dja
 2. In ``settings.py``, add django_nmpro to your ``INSTALLED_APPS``.
 3. In ``urls.py``, add the following pattern ``url(r'^', include('django_nmrpro.urls')),``.
 4. From the terminal console (*command prompt on Windows*), navigate to the project home directory and run the web server using the command::
+    
+    python manage.py migrate
+
+5. Run the server using the command::
 
     python manage.py runserver
 
-4. To make sure that installation is successful, visit the URL http://127.0.0.1:8000/nmrpro_test/, which should display 5 spectra from the Coffees dataset.
+6. To make sure that installation is successful, visit the URL http://127.0.0.1:8000/nmrpro_test/, which should display 5 spectra from the Coffees dataset.
 
 
 

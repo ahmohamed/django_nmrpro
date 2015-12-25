@@ -9,6 +9,6 @@ urlpatterns = patterns('',
     
     # demo urls. Comment if not needed
     url(r'^coffees_specs$', 'django_nmrpro.views.coffees_test'),
-    url(r'^test$', 'django_nmrpro.views.coffees_view'),
+    url(r'^nmrpro_test/$', 'django_nmrpro.views.coffees_view'),
 )
 
