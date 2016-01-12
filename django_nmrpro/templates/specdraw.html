@@ -1,0 +1,24 @@
+<script>
+
+var url = "{% url 'django_nmrpro.views.spec_url' url=spec_url %}?{{ request.GET.urlencode }}";
+
+{%if full_page%}
+var parent_div = d3.select("body")
+  .style("width", '100%')
+  .style("height", '100%');
+{%else%}
+var parent_div = d3.select(document.currentScript.parentNode);
+{%endif%}
+
+var container = parent_div.append('div')
+  .style("width", '100%')
+  .style("height", '100%');
+
+console.log(parent_div);
+
+{% url 'django_nmrpro.views.menu' as menu_url%}  
+var spec_app = specdraw.App().connect('{{ menu_url|cut:"menu" }}');
+container.call(spec_app);
+spec_app.data(url, 5);
+
+</script>

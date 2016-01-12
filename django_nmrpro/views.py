@@ -22,7 +22,6 @@ from .session import registerSpecs, getSessionSpec
 from re import compile
 import os.path
 
-
 # TODO: add NMRFILES_ROOT in settings, readme.
 media_root = getattr(settings, 'NMRFILES_ROOT', None)
 if media_root is None:

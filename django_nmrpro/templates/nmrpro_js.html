@@ -1,0 +1,9 @@
+{% load staticfiles %}
+
+{% if load_js %}
+  <script src="{% static "nmrpro/d3.v3.min.js" %}"></script>
+  <script src="{% static "nmrpro/specdraw.js" %}"></script>
+{% endif %}
+{% if load_css %}
+  <link rel="stylesheet" type="text/css" href="{% static "nmrpro/specdraw.min.css" %}">
+{% endif %}
