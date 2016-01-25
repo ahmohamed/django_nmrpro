@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+from django.http.request import QueryDict
 from django.core.cache import cache
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
@@ -21,6 +22,7 @@ import exceptions
 from .session import registerSpecs, getSessionSpec
 from re import compile
 import os.path
+
 
 # TODO: add NMRFILES_ROOT in settings, readme.
 media_root = getattr(settings, 'NMRFILES_ROOT', None)
@@ -77,6 +79,9 @@ def plugin_caller(specs, query):
         if plugin_funcs.has_key(p):
             start=len(p+"_")
             params = {k[start:]:v for (k,v) in query.items() if k.startswith(p+"_") and len(k) > start}
+            query_params = QueryDict('', mutable=True)
+            query_params.update({k:v for (k,v) in query.items() if k.startswith(p+"_")})
+            params['query_params'] = query_params.urlencode()
             specs = plugin_funcs[p](specs, params)
             #print(plugin_funcs[p].__name__)
             #import pdb; pdb.set_trace()
