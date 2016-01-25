@@ -1,6 +1,9 @@
 <script>
-
+{%if spec_url%}
 var url = "{% url 'django_nmrpro.views.spec_url' url=spec_url %}?{{ request.GET.urlencode }}";
+{% else %}
+var url = "{{data_url}}";
+{% endif %}
 
 {%if full_page%}
 var parent_div = d3.select("body")
