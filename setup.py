@@ -10,7 +10,7 @@ setup(
   packages = find_packages(), # this must be the same as the name above
   include_package_data=True,
   platforms='any',
-  version = '0.2.3',
+  version = '0.2.4',
   description = 'Django app companion for nmrpro package',
   author = 'Ahmed Mohamed',
   author_email = 'mohamed@kuicr.kyoto-u.ac.jp',
