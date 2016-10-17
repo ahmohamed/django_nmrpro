@@ -109,7 +109,6 @@ def proc_plugin(request):
     return ret
     
 @jsonError
-@jsonSpectrum
 def spec_url(request, url):
     validate = URLValidator()
     
@@ -123,14 +122,22 @@ def spec_url(request, url):
         abs_url = os.path.abspath(os.path.join(media_root, url))
         if abs_url[:len(media_root)] != media_root:
             raise NoNMRDataError('Permission denied to access this url: %s' %url)
+        
+        if not os.path.exists(abs_url):
+            raise NoNMRDataError('The path supplied has no NMR spectra: %s' %url)
     
-    specs = fromFile(abs_url)
+    return spec_fileobj(file(abs_url))
+
+
+@jsonError
+@jsonSpectrum
+def spec_fileobj(request, fileobj):
+    specs = fromFile(fileobj)
     if isinstance(specs, NMRSpectrum):
         specs = [specs]
     registerSpecs(request, specs)
     return specs
-
-
+    
 @cache_page(60 * 15)
 def view_spectrum(request, url):
     return render_to_response('getSpectrum.html', {'spec_url':url, 'request':request})
