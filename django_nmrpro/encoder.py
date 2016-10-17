@@ -11,8 +11,8 @@ def scale_data(data, bits, phases):
     if phases == "both":
         max_num = (2.0**bits - 1) /2
         data_range = max(abs(data.max()), abs(data.min()))
-        data *=(max_num/data_range)
-        data += max_num
+        np.multiply(data, max_num/data_range, out=data, casting='unsafe')
+        np.add(data, max_num, out=data, casting='unsafe')
         return data
     
     min_data = data.min()
@@ -21,9 +21,9 @@ def scale_data(data, bits, phases):
         if min_data < 0:
             data -= min_data
         
-        data *=(max_num/data.max())
+        np.multiply(data, max_num/data.max(), out=data, casting='unsafe')
         return data
-
+        
 def get_data_as_png(obj):
     im = Image.fromarray(obj, mode='L')
     data = BytesIO()
