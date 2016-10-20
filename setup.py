@@ -10,11 +10,11 @@ setup(
   packages = find_packages(), # this must be the same as the name above
   include_package_data=True,
   platforms='any',
-  version = '0.2.4',
+  version = '0.2.5',
   description = 'Django app companion for nmrpro package',
   author = 'Ahmed Mohamed',
   author_email = 'mohamed@kuicr.kyoto-u.ac.jp',
-  install_requires=['django >= 1.8','nmrpro', 'dill', 'Pillow'],
+  install_requires=['django >= 1.8','nmrpro_encoder', 'dill'],
   url = 'https://github.com/ahmohamed/django_nmrpro', # use the URL to the github repo
   license='MIT',
   keywords = ['nmr', 'spectra', 'multi-dimensional'],
