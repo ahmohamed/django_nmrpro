@@ -15,7 +15,7 @@ from nmrpro.exceptions import NoNMRDataError
 from nmrpro.classes.NMRSpectrum import NMRSpectrum
 
 from json import dumps
-import encoder
+from nmrpro_encoder import encoder
 import exceptions
 
 
